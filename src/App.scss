@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
+@use 'styles/variables';
+
+#root {
+  max-width: 1110px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: block;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.btn {
+  color: variables.$color-neutral-white;
+  text-decoration: none;
+  background-color: variables.$color-primary-cyan;
+  padding: 8px 20px;
+  border-radius: 50px;
+  transition: .3s;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  &:hover {
+    color: variables.$color-neutral-white;
+    opacity: .5;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav {
   display: flex;
-  flex-direction: column;
+  flex: 1;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  gap: 40px;
+  font-weight: 700;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .nav__logo {
+    img {
+      height: 40px;
+      display: block;
+    }    
   }
-  to {
-    transform: rotate(360deg);
+
+  .nav__links {
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+
+      li {
+        a {
+          color: variables.$color-neutral-gray-violet;
+          text-decoration: none;
+          transition: .3s;
+
+          &:hover {
+            color: variables.$color-neutral-dark-blue;
+          }
+        }        
+      }
+    }
+  }
+
+  .nav__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    a {
+      color: variables.$color-neutral-gray-violet;
+      text-decoration: none;
+      transition: .3s;
+
+      &.btn {
+        color: variables.$color-neutral-white;
+
+        &:hover {
+          color: variables.$color-neutral-white;
+        }
+      }
+
+      &:hover {
+        color: variables.$color-neutral-dark-blue;
+      }
+    }
+  }
+}
+
+.hero {
+  padding: 120px 0;
+
+  > div {
+    width: 50%;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+    line-height: 5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.4rem;
+    color: variables.$color-neutral-gray-violet;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 12px 30px;
   }
 }
