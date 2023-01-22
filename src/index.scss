@@ -1,0 +1,21 @@
+@use 'styles/variables';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  font-family: variables.$font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+  background-color: variables.$color-light-grayish-cyan;
+  color: variables.$color-dark-cyan;
+  display: grid;
+  place-items: center;
+}
