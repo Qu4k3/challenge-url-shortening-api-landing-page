@@ -1,7 +1,7 @@
 @use 'styles/variables';
 
 #root {
-  margin: 40px auto;
+  margin: 40px auto 0 auto;
   display: block;
 }
 
@@ -19,19 +19,19 @@
   color: variables.$color-neutral-white;
   text-decoration: none;
   background-color: variables.$color-primary-cyan;
-  padding: 8px 20px;
+  padding: 8px 25px;
   border-radius: 50px;
   transition: .3s;
 
   &:hover {
     color: variables.$color-neutral-white;
-    opacity: .5;
+    background-color: variables.$color-secondary-action;
   }
 
   &.big {
     font-size: 1.2rem;
     font-weight: 700;
-    padding: 12px 30px;
+    padding: 12px 35px;
   }
 }
 
@@ -117,9 +117,11 @@
     width: 700px;
     height: auto;
     display: block;
-    position: absolute;
+    /*position: absolute;
     left: 100px;
     top: -50px;
+    overflow-x: hidden;
+    overflow: hidden;*/
   }
 
   h1 {
@@ -133,6 +135,88 @@
     margin-bottom: 50px;
     margin-top: 10px;
   }
+}
+
+.features {
+  background-color: variables.$color-neutral-bg-gray;
+  padding: 200px 0 100px 0;
+
+  .wrapper {
+    h3 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    & > p {
+      text-align: center;
+      font-size: 1.15rem;
+      line-height: 2rem;
+      color: variables.$color-neutral-gray-violet;
+      max-width: 50%;
+      margin: 0 auto;
+    }
+
+    .features__cards {
+      margin-top: 80px;
+      display: flex;
+      gap: 30px;
+
+      .card {
+        background-color: variables.$color-neutral-white;
+        padding: 40px;
+        border-radius: 5px;
+        position: relative;
+
+        div {
+          background-color: variables.$color-primary-violet;
+          padding: 23px;
+          border-radius: 50px;
+          position: absolute;
+          height: 90px;
+          width: 90px;
+          top: -40px;
+          display: flex;
+        }
+
+        h5 {
+          font-size: 1.5rem;
+          margin-bottom: 20px;
+          margin-top: 40px;
+        }
+
+        p {
+          color: variables.$color-neutral-gray-violet;
+        }
+
+        &:not(:nth-child(1)) {
+          &::before {
+            content: '';
+            width: 30px;
+            height: 8px;
+            background-color: variables.$color-primary-cyan;
+            position: absolute;
+            left: -30px;
+            top: 120px;
+          }
+        }
+
+        &:nth-child(2) {
+          margin-top: 45px;
+        }
+
+        &:nth-child(3) {
+          margin-top: 90px;
+          &::before {
+            top: 75px !important;
+          }
+        }
+
+      }
+    }
+  }
+
+
 }
 
 .call-to-action {
@@ -162,18 +246,62 @@
   background-color: variables.$color-neutral-dark-violet;
 
   .wrapper {   
-    padding: 50px 0;
+    padding: 70px 0;
     display: flex;
+    gap: 100px;
 
     .footer__logo {
-      svg {
+      margin-right: auto;
+    }
 
+    .footer__links {
+      display: flex;
+      gap: 70px;
+
+      h5 {
+        color: variables.$color-neutral-white;
+        font-size: 1rem;
+      }
+  
+      ul {
+        list-style: none;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+  
+        li {
+          
+          a {
+            text-decoration: none;
+            color: variables.$color-neutral-gray-violet;
+            transition: .3s;
+            white-space: nowrap;
+
+            &:hover {
+              color: variables.$color-primary-cyan
+            }
+          }
+        }
       }
     }
 
-    h3 {
-      color: variables.$color-neutral-white;
-      font-size: 2.5rem;
+    .footer__social {
+      display: flex;
+      gap: 25px;
+
+      a {
+        svg {
+          fill: variables.$color-neutral-white;
+          transition: .3s;
+        }
+       
+        &:hover {
+          svg {
+            fill: variables.$color-primary-cyan
+          }          
+        }
+      }
     }
   }
 }
