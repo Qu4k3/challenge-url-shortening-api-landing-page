@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export function Shortener() {
 
   const handleSubmit = (event) => {
