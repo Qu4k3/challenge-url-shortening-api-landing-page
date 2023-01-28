@@ -100,6 +100,7 @@
 
 .hero {
   padding: 150px 0;
+  overflow-x: hidden;
   /*background-image: url("./assets/illustration-working.svg");
   background-repeat: no-repeat;
   background-position: right;*/
@@ -114,7 +115,7 @@
   }  
 
   img {
-    width: 700px;
+    width: 150%;
     height: auto;
     display: block;
     /*position: absolute;
@@ -140,12 +141,14 @@
 .shortener {
   margin-bottom: -90px;
   position: relative;
+  padding: 0 20px;
+
   .wrapper {
     background-color: variables.$color-primary-violet;
     background-image: url("./assets/bg-boost-desktop.svg");
     background-repeat: no-repeat;
     background-position: 100% 100%;
-    background-size: 150%;
+    background-size: cover;
     text-align: center;
     padding: 60px;
     border-radius: 15px;
@@ -252,7 +255,7 @@
         &:nth-child(3) {
           margin-top: 90px;
           &::before {
-            top: 75px !important;
+            top: 75px;
           }
         }
 
