@@ -15,12 +15,13 @@ $color-neutral-gray-violet:hsl(257, 7%, 63%);
 $color-neutral-dark-blue:hsl(255, 11%, 22%);
 $color-neutral-dark-violet:hsl(260, 8%, 14%);
 
+$color-invalid: #f87171;
+
 // defaults
 $font-family: 'Poppins', sans-serif;;
 $font-size: 18px;
 
 // breakpoints
-$extra-small: 375px;
 $small: 576px;
-$medium: 768px;
-$large: 1440px
+$medium: 815px;
+$large: 1024px;
