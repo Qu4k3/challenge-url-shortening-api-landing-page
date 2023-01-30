@@ -1,5 +1,38 @@
 @use './variables';
 
+@media screen and (max-width: variables.$large) {
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .wrapper {
+      flex-direction: row;
+      gap: 40px;
+
+      h1 {
+        font-size: 3.5rem;
+        line-height: 4rem;
+      }
+
+      /*.hero__subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+      }*/
+    }
+  }
+  
+  .footer {
+    .wrapper {
+      gap: 70px;
+
+      .footer__social {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: variables.$medium) {
   .nav {
     .wrapper {
@@ -16,69 +49,90 @@
         margin-left: auto;
       }
     }
-  } 
-}
-
-@media screen and (max-width: variables.$small) {
-
-  .btn{
-    &.btn--big {
-      font-size: 1rem;
-      padding: 10px 25px;
-    }
   }
 
   .hero {
-    padding: 100px 0;
+    padding-top: 100px;
+    padding-bottom: 100px;
 
     .wrapper {
-      flex-direction: column-reverse;
+      flex-direction: row;
       gap: 40px;
 
-      & > div {
-        text-align: center;
-      }
-
       h1 {
-        font-size: 2.5rem;
-        line-height: 3rem;
+        font-size: 3rem;
+        line-height: 3.5rem;
       }
 
       .hero__subtitle {
-        font-size: 1rem;
+        font-size: 1.15rem;
         margin-bottom: 40px;
       }
     }
   }
 
   .shortener {
-    padding: 0 20px;
-    margin-bottom: -65px;
+    &::before {
+      height: 41px;
+    }
 
-    .wrapper {
-      padding: 20px;
-      border-radius: 10px;
+    .wrapper__form {
+      padding: 40px;
 
       form {
         gap: 15px;
-        flex-direction: column;
 
         input {
           border-radius: 5px;
           padding: 10px 15px;
-          font-size: .9rem;          
+          font-size: .9rem;
         }
 
         button {
           border-radius: 5px;
           padding: 10px 40px;
         }
-      }        
+      }
+
+      .invalid-message {
+        position: absolute;
+        top: 85px;
+      }
+    }
+
+    .wrapper__shortened {
+      .shortened {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        position: relative;
+        padding: 15px;
+
+        .original-link {
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            left: -0;
+            right: -0;
+            border-bottom: 1px solid variables.$color-neutral-bg-gray;
+          }
+        }
+
+        button {
+          padding: 10px 20px;
+          border-radius: 5px;
+          width: 100%;
+          font-weight: 700;
+          margin-top: -10px;
+        }
+      }
     }
   }
 
   .features {
-    padding: 150px 0 100px 0;
+    padding-top: 100px;
+    padding-bottom: 100px;
 
     .wrapper {
       h3 {
@@ -116,32 +170,21 @@
           }
         }
       }
-    } 
-  } 
-
-  .call-to-action {  
-    .wrapper{
-      gap: 15px;
-
-      h3 {
-        font-size: 1.5rem;
-      }
-    } 
+    }
   }
 
-
-  .footer {  
+  .footer {
     .wrapper {
       flex-direction: column;
       align-items: center;
-      text-align: center;  
+      text-align: center;
       padding: 50px 0;
       gap: 50px;
-      
+
       .footer__logo {
         margin-right: 0;
       }
-      
+
       .footer__links {
         flex-direction: column;
         align-items: center;
@@ -151,6 +194,88 @@
         ul {
           gap: 5px;
         }
+      }
+
+      .footer__social {
+        flex-direction: row;
+        gap: 25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: variables.$small) {
+
+  .btn {
+    &.btn--big {
+      font-size: 1rem;
+      padding: 10px 25px;
+    }
+  }
+
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .wrapper {
+      flex-direction: column-reverse;
+      gap: 40px;
+
+      &>div {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        line-height: 3rem;
+      }
+
+      .hero__subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .shortener {
+    padding: 0 20px;
+
+    &::before {
+      height: 67px;
+    }
+
+    .wrapper {
+      border-radius: 10px;
+
+      form {
+        gap: 15px;
+        flex-direction: column;
+
+        input {
+          border-radius: 5px;
+          padding: 10px 15px;
+          font-size: .9rem;
+        }
+
+        button {
+          border-radius: 5px;
+          padding: 10px 40px;
+        }
+      }
+
+      .invalid-message {
+        position: inherit;
+        margin-top: -10px;
+      }
+    }
+  }
+
+  .call-to-action {
+    .wrapper {
+      gap: 15px;
+
+      h3 {
+        font-size: 1.5rem;
       }
     }
   }
