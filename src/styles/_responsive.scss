@@ -38,7 +38,7 @@
       }*/
     }
   }
-  
+
   .footer {
     .wrapper {
       gap: 70px;
@@ -54,12 +54,47 @@
 @media screen and (max-width: variables.$medium) {
   .nav {
     .wrapper {
-      .nav__links {
+      .mobile__wrapper {
+        background-color: variables.$color-primary-violet;
+        position: absolute;
+        padding: 30px 30px;
+        border-radius: 8px;
+        width: calc(100% - 40px);
+        top: 100px;
+        z-index: 2;
         display: none;
-      }
 
-      .nav__actions {
-        display: none;
+        &.show {
+          display: flex;
+        }
+
+        .nav__links {
+          ul {
+            gap: 20px;
+
+            li {
+              a {
+                color: variables.$color-neutral-white;
+
+                &:hover {
+                  color: variables.$color-primary-cyan;
+                }
+              }
+            }
+          }
+        }
+
+        .nav__actions {
+          gap: 20px;
+
+          a {
+            color: variables.$color-neutral-white;
+
+            &:hover {
+              color: variables.$color-primary-cyan;
+            }
+          }
+        }
       }
 
       .nav__hamburguer {
@@ -228,6 +263,61 @@
     &.btn--big {
       font-size: 1rem;
       padding: 10px 25px;
+    }
+  }
+
+  .nav {
+    .wrapper {
+      .mobile__wrapper {
+        flex-direction: column;
+        padding: 40px 30px;
+    
+        .nav__links { 
+          width: 100%;     
+          ul {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+    
+            li {
+              width: 100%;
+              font-size: 1.2rem;
+              text-align: center;
+              a {
+                display: block;
+                width: 100%;
+                color: variables.$color-neutral-white;
+    
+                &:hover {
+                  color: variables.$color-primary-cyan;
+                }
+              }
+            }
+          }
+        }
+    
+        .nav__actions {
+          margin-top: 30px;
+          padding-top: 30px;
+          width: 100%;
+          border-top: 0.5px solid #9e9aa766;
+          ;
+          margin-left: inherit;
+          flex-direction: column;
+          gap: 30px;
+          align-items: center;
+          text-align: center;
+          
+          a {
+            width: 100%;
+            color: variables.$color-neutral-white;
+    
+            &:hover {
+              color: variables.$color-primary-cyan;
+            }
+          }
+        }
+      }
     }
   }
 

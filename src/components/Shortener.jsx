@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { shrtcodeShortener } from "../services/shrtcode";
-import { Shortened } from "./Shortened";
+import { useEffect, useState } from 'react';
+import { shrtcodeShortener } from '../services/shrtcode';
+import { Shortened } from './Shortened';
 
 export function Shortener() {
   const [shortenedUrls, setShortenedUrls] = useState([]);
   const [invalidInput, setInvalidInput] = useState(false)
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,9 +25,9 @@ export function Shortener() {
     const formatedItem = {
       'code': item.code,
       'original_link': item.original_link,
-      'short_link': item.short_link
+      'full_short_link': item.full_short_link
     }
-    
+
     if (shortenedUrls) {
       shortenedUrlsArray = JSON.parse(shortenedUrls);
     }
@@ -67,21 +66,18 @@ export function Shortener() {
             required
           />
           {
-            invalidInput && <p className="invalid-message">Please add a valid link</p>
+            invalidInput && <p className='invalid-message'>Please add a valid link</p>
           }
           <button type='submit' className='btn btn--big'>Shorten It!</button>
         </form>
       </section>
-      <section className="wrapper wrapper__shortened">
+      <section className='wrapper wrapper__shortened'>
         {
-          /*shortenedUrls.length > 0
-          && */
-
           shortenedUrls.map((shortened, i) =>
             <Shortened
               key={shortened.code + '-' + i}
               originalLink={shortened.original_link}
-              shortLink={shortened.short_link}
+              shortLink={shortened.full_short_link}
             />)
         }
       </section>
