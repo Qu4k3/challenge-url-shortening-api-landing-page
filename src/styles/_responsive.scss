@@ -1,5 +1,23 @@
 @use './variables';
 
+@media screen and (min-width: variables.$large) {
+  .wrapper__shortened {
+    .shortened {
+      .original-link {
+        font-size: 1.2rem;
+      }
+
+      a {
+        font-size: 1.2rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: variables.$large) {
   .hero {
     padding-top: 100px;
@@ -20,7 +38,7 @@
       }*/
     }
   }
-  
+
   .footer {
     .wrapper {
       gap: 70px;
@@ -36,12 +54,47 @@
 @media screen and (max-width: variables.$medium) {
   .nav {
     .wrapper {
-      .nav__links {
+      .mobile__wrapper {
+        background-color: variables.$color-primary-violet;
+        position: absolute;
+        padding: 30px 30px;
+        border-radius: 8px;
+        width: calc(100% - 40px);
+        top: 100px;
+        z-index: 2;
         display: none;
-      }
 
-      .nav__actions {
-        display: none;
+        &.show {
+          display: flex;
+        }
+
+        .nav__links {
+          ul {
+            gap: 20px;
+
+            li {
+              a {
+                color: variables.$color-neutral-white;
+
+                &:hover {
+                  color: variables.$color-primary-cyan;
+                }
+              }
+            }
+          }
+        }
+
+        .nav__actions {
+          gap: 20px;
+
+          a {
+            color: variables.$color-neutral-white;
+
+            &:hover {
+              color: variables.$color-primary-cyan;
+            }
+          }
+        }
       }
 
       .nav__hamburguer {
@@ -73,7 +126,7 @@
 
   .shortener {
     &::before {
-      height: 41px;
+      height: 61px;
     }
 
     .wrapper__form {
@@ -213,8 +266,63 @@
     }
   }
 
+  .nav {
+    .wrapper {
+      .mobile__wrapper {
+        flex-direction: column;
+        padding: 40px 30px;
+    
+        .nav__links { 
+          width: 100%;     
+          ul {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+    
+            li {
+              width: 100%;
+              font-size: 1.2rem;
+              text-align: center;
+              a {
+                display: block;
+                width: 100%;
+                color: variables.$color-neutral-white;
+    
+                &:hover {
+                  color: variables.$color-primary-cyan;
+                }
+              }
+            }
+          }
+        }
+    
+        .nav__actions {
+          margin-top: 30px;
+          padding-top: 30px;
+          width: 100%;
+          border-top: 0.5px solid #9e9aa766;
+          ;
+          margin-left: inherit;
+          flex-direction: column;
+          gap: 30px;
+          align-items: center;
+          text-align: center;
+          
+          a {
+            width: 100%;
+            color: variables.$color-neutral-white;
+    
+            &:hover {
+              color: variables.$color-primary-cyan;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .hero {
-    padding-top: 100px;
+    padding-top: 20px;
     padding-bottom: 100px;
 
     .wrapper {
@@ -234,6 +342,10 @@
         font-size: 1rem;
         margin-bottom: 40px;
       }
+
+      .btn {
+        padding: 15px 40px;
+      }
     }
   }
 
@@ -247,6 +359,9 @@
     .wrapper {
       border-radius: 10px;
 
+      &.wrapper__form {
+        padding: 20px;
+
       form {
         gap: 15px;
         flex-direction: column;
@@ -259,9 +374,10 @@
 
         button {
           border-radius: 5px;
-          padding: 10px 40px;
+          padding: 10px 20px;
         }
       }
+    }
 
       .invalid-message {
         position: inherit;

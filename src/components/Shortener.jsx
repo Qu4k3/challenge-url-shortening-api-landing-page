@@ -1,49 +1,54 @@
-import { useEffect, useState } from "react";
-import { shrtcodeShortener } from "../services/shrtcode";
-import { Shortened } from "./Shortened";
+import { useEffect, useState } from 'react';
+import { shrtcodeShortener } from '../services/shrtcode';
+import { Shortened } from './Shortened';
 
 export function Shortener() {
-  const [shortenedUrls, setShortenedUrls] = useState([
-    {
-      'code': '8pv6vG',
-      'original_link': 'https://www.frontendmentor.io/',
-      'short_link': 'https://shrtco.de/8pv6vG'
-    },
-    {
-      'code': 'tEW36m',
-      'original_link': 'https://twitter.com/frontendmentor',
-      'short_link': 'https://shrtco.de/tEW36m'
-    }
-  ]);
+  const [shortenedUrls, setShortenedUrls] = useState([]);
   const [invalidInput, setInvalidInput] = useState(false)
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event)
-
+    setInvalidInput(false)
     const url = event.target.url.value;
-    console.log(`URL: ${url}`);
 
-    shrtcodeShortener(url).then(data => console.log('shrtcodeShortener:', data))
+    shrtcodeShortener(url)
+      .then(data => updateLocalStorageSetState(data))
 
     event.target.reset();
   }
 
-  const checkLocalStorage = () => {
+  const updateLocalStorageSetState = (json) => {
+    const item = json.result;
+    let shortenedUrls = localStorage.getItem('shortenedUrls');
+    let shortenedUrlsArray = [];
 
-    // Put the object into storage
-    localStorage.setItem('shortened', JSON.stringify(shortenedUrls));
+    const formatedItem = {
+      'code': item.code,
+      'original_link': item.original_link,
+      'full_short_link': item.full_short_link
+    }
 
-    // Retrieve the object from storage
-    var shortenedUrls = localStorage.getItem('shortened');
+    if (shortenedUrls) {
+      shortenedUrlsArray = JSON.parse(shortenedUrls);
+    }
 
-    setShortenedUrls(JSON.parse(shortenedUrls));
+    shortenedUrlsArray.push(formatedItem);
+    localStorage.setItem('shortenedUrls', JSON.stringify(shortenedUrlsArray));
+
+    setShortenedUrls(shortenedUrlsArray);
   }
 
-  /*useEffect(() => {
-    return checkLocalStorage()
-  }, [])*/
+  const checkLocalStorageSetState = () => {
+    let shortenedUrls = localStorage.getItem('shortenedUrls');
+
+    if (shortenedUrls) {
+      setShortenedUrls(JSON.parse(shortenedUrls));
+    }
+  }
+
+  useEffect(() => {
+    checkLocalStorageSetState()
+  }, [])
 
   return (
     <section className='container shortener'>
@@ -61,21 +66,18 @@ export function Shortener() {
             required
           />
           {
-            invalidInput && <p className="invalid-message">Please add a valid link</p>
+            invalidInput && <p className='invalid-message'>Please add a valid link</p>
           }
           <button type='submit' className='btn btn--big'>Shorten It!</button>
         </form>
       </section>
-      <section className="wrapper wrapper__shortened">
+      <section className='wrapper wrapper__shortened'>
         {
-          /*shortenedUrls.length > 0
-          && */
-
-          shortenedUrls.map(
-            (shortened) => <Shortened
-              key={shortened.code}
+          shortenedUrls.map((shortened, i) =>
+            <Shortened
+              key={shortened.code + '-' + i}
               originalLink={shortened.original_link}
-              shortLink={shortened.short_link}
+              shortLink={shortened.full_short_link}
             />)
         }
       </section>
