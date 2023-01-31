@@ -1,5 +1,23 @@
 @use './variables';
 
+@media screen and (min-width: variables.$large) {
+  .wrapper__shortened {
+    .shortened {
+      .original-link {
+        font-size: 1.2rem;
+      }
+
+      a {
+        font-size: 1.2rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: variables.$large) {
   .hero {
     padding-top: 100px;
