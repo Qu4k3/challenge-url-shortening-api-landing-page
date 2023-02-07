@@ -11,30 +11,33 @@ export function Nav() {
   }
 
   return (
-    <section className="container nav nav--mobile">
+    <section className="container nav">
       <div className='wrapper'>
         <div className="nav__logo">
           <img src={AppLogo} alt="Shortly" />
         </div>
 
-        <div className="nav__links">
-          <ul>
-            <li>
-              <a href="#">Features</a>
-            </li>
-            <li>
-              <a href="#">Pricing</a>
-            </li>
-            <li>
-              <a href="#">Resources</a>
-            </li>
-          </ul>
-        </div>
+        <div className={`mobile__wrapper${hamburgerOpen ? ' show' : ''}`}>
+          <div className="nav__links">
+            <ul>
+              <li>
+                <a href="#">Features</a>
+              </li>
+              <li>
+                <a href="#">Pricing</a>
+              </li>
+              <li>
+                <a href="#">Resources</a>
+              </li>
+            </ul>
+          </div>
 
-        <div className="nav__actions">
-          <a href="#">Login</a>
-          <a className='btn' href="#">Sign Up</a>
+          <div className="nav__actions">
+            <a href="#">Login</a>
+            <a className='btn' href="#">Sign Up</a>
+          </div>
         </div>
+        
 
         <FaBars
           className='nav__hamburguer'
