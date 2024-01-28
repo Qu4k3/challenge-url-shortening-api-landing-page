@@ -6,7 +6,7 @@ export function Shortener() {
   const [shortenedUrls, setShortenedUrls] = useState([]);
   const [invalidInput, setInvalidInput] = useState(false)
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setInvalidInput(false)
     const url = event.target.url.value;
@@ -19,8 +19,7 @@ export function Shortener() {
 
   const updateLocalStorageSetState = (json) => {
     const item = json.result;
-    let shortenedUrls = localStorage.getItem('shortenedUrls');
-    let shortenedUrlsArray = [];
+    let shortenedUrls = JSON.parse(localStorage.getItem('shortenedUrls')) || [];
 
     const formatedItem = {
       'code': item.code,
@@ -28,14 +27,9 @@ export function Shortener() {
       'full_short_link': item.full_short_link
     }
 
-    if (shortenedUrls) {
-      shortenedUrlsArray = JSON.parse(shortenedUrls);
-    }
-
-    shortenedUrlsArray.push(formatedItem);
-    localStorage.setItem('shortenedUrls', JSON.stringify(shortenedUrlsArray));
-
-    setShortenedUrls(shortenedUrlsArray);
+    shortenedUrls.push(formatedItem);
+    localStorage.setItem('shortenedUrls', JSON.stringify(shortenedUrls));
+    setShortenedUrls(shortenedUrls);
   }
 
   const checkLocalStorageSetState = () => {
