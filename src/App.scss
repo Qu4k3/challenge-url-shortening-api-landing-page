@@ -29,6 +29,13 @@
     background-color: variables.$color-secondary-action;
   }
 
+  &:disabled,
+  &[disabled] {
+    color: variables.$color-neutral-white;
+    background-color: variables.$color-secondary-action;
+    cursor: default !important;
+  }
+
   &.btn--big {
     font-size: 1.2rem;
     font-weight: 700;

@@ -1,30 +1,37 @@
 import { useEffect, useState } from 'react';
-import { shrtcodeShortener } from '../services/shrtcode';
+import { cleanuriShortener } from '../services/cleanuri';
 import { Shortened } from './Shortened';
 
 export function Shortener() {
+  const [error, setError] = useState(null);
+  const [isFetching, setIsFetching] = useState(false);
   const [shortenedUrls, setShortenedUrls] = useState([]);
-  const [invalidInput, setInvalidInput] = useState(false)
+  const [invalidInput, setInvalidInput] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsFetching(true)
+    setError(null)
     setInvalidInput(false)
     const url = event.target.url.value;
 
-    shrtcodeShortener(url)
-      .then(data => updateLocalStorageSetState(data))
-
-    event.target.reset();
+    try {
+      const data = await cleanuriShortener(url);
+      updateLocalStorageSetState(url, data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsFetching(false);
+      event.target.reset();
+    }
   }
 
-  const updateLocalStorageSetState = (json) => {
-    const item = json.result;
+  const updateLocalStorageSetState = (url, data) => {
     let shortenedUrls = JSON.parse(localStorage.getItem('shortenedUrls')) || [];
 
     const formatedItem = {
-      'code': item.code,
-      'original_link': item.original_link,
-      'full_short_link': item.full_short_link
+      'original_link': url,
+      'full_short_link': data.result_url
     }
 
     shortenedUrls.push(formatedItem);
@@ -59,10 +66,15 @@ export function Shortener() {
             // onValid={() => {setInvalidInput(false)}}
             required
           />
-          {
-            invalidInput && <p className='invalid-message'>Please add a valid link</p>
-          }
-          <button type='submit' className='btn btn--big'>Shorten It!</button>
+          { invalidInput && <p className='invalid-message'>Please add a valid link</p> }
+          { error && <p className='invalid-message'>{error}</p> }
+          <button
+            type='submit'
+            className='btn btn--big'
+            disabled={isFetching}
+          >
+            {isFetching ? "In progress": "Shorten It!"}
+          </button>
         </form>
       </section>
       <section className='wrapper wrapper__shortened'>
