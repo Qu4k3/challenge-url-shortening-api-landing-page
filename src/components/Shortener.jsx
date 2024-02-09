@@ -67,7 +67,7 @@ export function Shortener() {
             required
           />
           { invalidInput && <p className='invalid-message'>Please add a valid link</p> }
-          { error && <p className='invalid-message'>{error}</p> }
+          { error && !invalidInput && <p className='invalid-message'>{error}</p> }
           <button
             type='submit'
             className='btn btn--big'
