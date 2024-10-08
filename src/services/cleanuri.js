@@ -6,7 +6,7 @@ export const cleanuriShortener = async (url) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: 'url=' + encodeURIComponent(url),
+    body: `url=${encodeURIComponent(url)}`,
   })
   const data = await response.json()
   return data

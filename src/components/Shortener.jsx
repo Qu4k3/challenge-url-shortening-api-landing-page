@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { cleanuriShortener } from '../services/cleanuri';
 import { Shortened } from './Shortened';
+import { encurtadorShortener } from '../services/encurtador';
 
 export function Shortener() {
   const [error, setError] = useState(null);
@@ -16,13 +16,13 @@ export function Shortener() {
     const url = event.target.url.value;
 
     try {
-      const data = await cleanuriShortener(url);
+      const data = await encurtadorShortener(url);
       updateLocalStorageSetState(url, data);
+      event.target.reset();
     } catch (error) {
       setError(error.message);
     } finally {
       setIsFetching(false);
-      event.target.reset();
     }
   }
 
@@ -31,7 +31,7 @@ export function Shortener() {
 
     const formatedItem = {
       'original_link': url,
-      'full_short_link': data.result_url
+      'full_short_link': data.urlEncurtada //result_url
     }
 
     shortenedUrls.push(formatedItem);
