@@ -29,14 +29,26 @@ export function Shortener() {
   const updateLocalStorageSetState = (url, data) => {
     let shortenedUrls = JSON.parse(localStorage.getItem('shortenedUrls')) || [];
 
-    const formatedItem = {
-      'original_link': url,
-      'full_short_link': data.urlEncurtada //result_url
+    let shortUrl = data.urlEncurtada  // data.result_url // (cleanuri)
+  
+    if (!shortUrl.startsWith('http://') && !shortUrl.startsWith('https://')) {
+      shortUrl = 'https://' + shortUrl
     }
 
-    shortenedUrls.push(formatedItem);
-    localStorage.setItem('shortenedUrls', JSON.stringify(shortenedUrls));
-    setShortenedUrls(shortenedUrls);
+    const formatedItem = {
+      'original_link': url,
+      'full_short_link': shortUrl
+    }
+
+    const urlAlreadyShortened = shortenedUrls.some(item => item.original_link === url);
+
+    if (!urlAlreadyShortened) {
+      shortenedUrls.push(formatedItem);
+      localStorage.setItem('shortenedUrls', JSON.stringify(shortenedUrls));
+      setShortenedUrls(shortenedUrls);
+    } else {
+      setError(`${url} has already been shortened.`);
+    }
   }
 
   const checkLocalStorageSetState = () => {

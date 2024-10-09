@@ -1,7 +1,8 @@
+const CORS_PROXY = 'https://proxy.cors.sh/'
 const ENCURTADOR_SHORTENING_API_ENDPOINT = 'https://api.encurtador.dev/encurtamentos'
 
 export const encurtadorShortener = async (url) => {
-  const response = await fetch(ENCURTADOR_SHORTENING_API_ENDPOINT, {
+  const response = await fetch(CORS_PROXY + ENCURTADOR_SHORTENING_API_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
